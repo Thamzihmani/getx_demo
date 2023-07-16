@@ -27,14 +27,14 @@ class IncrementController extends GetxController{
   void incrementY(){
     _y.value++;
     if (kDebugMode) {
-      print("Increment Y Value : ${_y}");
+      print("Increment Y Value : $_y");
     }
   }
 
   void decrementY(){
     _y.value--;
     if (kDebugMode) {
-      print("Decrement Y Value : ${_y}");
+      print("Decrement Y Value : $_y");
     }
   }
 }

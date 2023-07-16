@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx_demo/controller/increment_controller.dart';
+import 'package:getx_demo/controller/list_controller.dart';
 import 'package:getx_demo/views/third_page.dart';
 
 class SecondPage extends StatefulWidget {
@@ -12,6 +13,7 @@ class SecondPage extends StatefulWidget {
 
 class _SecondPageState extends State<SecondPage> {
   IncrementController controller = Get.find();
+  ListController listController = Get.find();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,6 +43,7 @@ class _SecondPageState extends State<SecondPage> {
             heroTag: "Increment",
             onPressed: () {
               controller.incrementY();
+              listController.addListFn(controller.y.value);
             },
             tooltip: 'Increment Y',
             child: const Icon(Icons.add),

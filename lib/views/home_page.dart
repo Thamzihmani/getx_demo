@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx_demo/controller/list_controller.dart';
 import 'package:getx_demo/views/first_page.dart';
 
 import '../controller/increment_controller.dart';
@@ -15,6 +16,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final IncrementController _controller = Get.put(IncrementController());
+  final ListController _listController = Get.put(ListController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,11 +32,25 @@ class _MyHomePageState extends State<MyHomePage> {
               builder: (_) => Center(
                     child: Text("${_controller.x}"),
                   )),
-          const SizedBox(height: 50,),
+          const SizedBox(
+            height: 50,
+          ),
           const Text("Y value"),
-          Obx(() =>Center(
+          Obx(
+            () => Center(
               child: Text("${_controller.y}"),
             ),
+          ),
+          const SizedBox(
+            height: 50,
+          ),
+          Obx(() => Expanded(
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  shrinkWrap: true,
+              itemBuilder: (context, index) => Text("${_listController.list[index]}"),
+              itemCount: _listController.list.length,
+            )),
           )
         ],
       ),
@@ -56,6 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
             heroTag: "Increment",
             onPressed: () {
               _controller.incrementX();
+              _listController.addListFn(_controller.x);
             },
             tooltip: 'Increment',
             child: const Icon(Icons.add),
