@@ -15,8 +15,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final IncrementController _controller = Get.put(IncrementController());
-  final ListController _listController = Get.put(ListController());
+  final IncrementController _controller = Get.find();
+  final ListController _listController = Get.find();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
