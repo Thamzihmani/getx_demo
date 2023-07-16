@@ -6,11 +6,13 @@ import '../controller/increment_controller.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
+
   final String title;
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
+
 class _MyHomePageState extends State<MyHomePage> {
   final IncrementController _controller = Get.put(IncrementController());
   @override
@@ -20,28 +22,46 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      body: GetBuilder<IncrementController>(builder: (controller) => Center(child: Text("${controller.value}"),)),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Text("X value"),
+          GetBuilder<IncrementController>(
+              builder: (_) => Center(
+                    child: Text("${_controller.x}"),
+                  )),
+          const SizedBox(height: 50,),
+          const Text("Y value"),
+          Obx(() =>Center(
+              child: Text("${_controller.y}"),
+            ),
+          )
+        ],
+      ),
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           FloatingActionButton(
             heroTag: "Page navigation",
             onPressed: () {
-             Get.to(()=>const FirstPage());
+              Get.to(() => const FirstPage());
             },
-            tooltip: 'Increment',
+            tooltip: 'Next page',
             child: const Icon(Icons.arrow_forward_outlined),
           ),
-          const SizedBox(height: 20,),
-          FloatingActionButton(heroTag: "Increment",
+          const SizedBox(
+            height: 20,
+          ),
+          FloatingActionButton(
+            heroTag: "Increment",
             onPressed: () {
-              _controller.increment();
+              _controller.incrementX();
             },
             tooltip: 'Increment',
             child: const Icon(Icons.add),
           ),
         ],
-      ), 
+      ),
     );
   }
 }
