@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx_demo/controller/list_controller.dart';
 import 'package:getx_demo/views/first_page.dart';
+import 'package:getx_demo/views/test1.dart';
+import 'package:getx_demo/views/testPage.dart';
 
 import '../controller/increment_controller.dart';
 
@@ -44,13 +46,35 @@ class _MyHomePageState extends State<MyHomePage> {
           const SizedBox(
             height: 50,
           ),
-          Obx(() => Expanded(
+          /*  Obx(
+            () => Expanded(
                 child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  shrinkWrap: true,
-              itemBuilder: (context, index) => Text("${_listController.list[index]}"),
+              scrollDirection: Axis.horizontal,
+              shrinkWrap: true,
+              itemBuilder: (context, index) =>
+                  Text("${_listController.list[index]}"),
               itemCount: _listController.list.length,
             )),
+          ),*/
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const RandD(),
+                  ));
+            },
+            child: Text("test page"),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const Test1(),
+                  ));
+            },
+            child: Text("test page 1"),
           )
         ],
       ),
